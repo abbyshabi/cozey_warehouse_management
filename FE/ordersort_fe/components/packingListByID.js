@@ -18,21 +18,26 @@ const PackingListByID = ({ orderId }) => {
 
   return (
     <div>
-      <h2>Packing List for Order #{orderId}</h2>
-      <ul>
-        {packingList.items.map((item, index) => (
-          <div key={index}>
-            <h3>{item.boxName}</h3>
-            <ul>
-              {item.subItems.map((subItem, subIndex) => (
-                <li key={subIndex}>
-                  {subItem.name}: {subItem.quantity}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </ul>
+      {
+        !orderId ? `Unable to generate list of order ${orderId}` : 
+        <div>
+            <h2>Packing List for Order #{orderId}</h2>
+        <ul>
+          {packingList?.items.map((item, index) => (
+            <div key={index}>
+              <h3>{item?.boxName}</h3>
+              <ul>
+                {item?.subItems.map((subItem, subIndex) => (
+                  <li key={subIndex}>
+                    {subItem?.name}: {subItem?.quantity}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </ul>
+        </div>
+      }
     </div>
   );
 };
